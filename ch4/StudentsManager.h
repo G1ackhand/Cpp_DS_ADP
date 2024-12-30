@@ -1,4 +1,4 @@
-// Created on Sat Dec 28 2024
+// Created on Mon Dec 30 2024
 // © 2024 BLACKHAND Studio. All rights reserved.
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,23 +13,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <cstdio>
+#pragma once
+
 #include <vector>
 
-#include "ch4/PartialSort.h"
-
-int main()
+struct Student
 {
-    std::vector<int> v = {
-        60, 17, 15, 62, 82, 58, 73, 1, 21, 48,
-        2, 43, 86, 30, 18, 29, 44, 81, 56, 41 
-    };
+    std::pair<int, int> name;
+    bool vaccinated;
 
-    Conquer<int>(v.begin(), v.end(), 5);
+    bool operator<(const Student& other) const
+    {
+        return this->name.first < other.name.first;
+    }
+};
 
-    for(const auto& n : v)
-        printf("%d ", n);
+class StudentsManager
+{
+public:
+    StudentsManager() = default;
+    ~StudentsManager() = default;
 
-    printf("\n");
-    return 0;
-}
+    void AddStudent(const Student& student) noexcept;
+    bool IsVaccin(std::pair<int, int> name) noexcept;
+
+private:
+    std::vector<Student> students;
+};

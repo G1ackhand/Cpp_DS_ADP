@@ -6,6 +6,7 @@
 /build/
 /html/
 /latex/
+/libs/
 
 *.o
 *.obj
