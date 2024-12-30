@@ -15,21 +15,34 @@
 
 #include <cstdio>
 #include <vector>
+#include <unordered_map>
 
-#include "ch4/PartialSort.h"
+#include "ch5/WelshPowell.h"
+#include "ch5/Graph.h"
 
 int main()
 {
-    std::vector<int> v = {
-        60, 17, 15, 62, 82, 58, 73, 1, 21, 48,
-        2, 43, 86, 30, 18, 29, 44, 81, 56, 41 
-    };
+    Graph<int> graph(8);
+    GraphMap graph_map;
 
-    Conquer<int>(v.begin(), v.end(), 5);
+    graph_map[1] = {{2, 0}, {5, 0}};
+    graph_map[2] = {{1, 0}, {5, 0}, {4, 0}};
+    graph_map[3] = {{4, 0}, {7, 0}};
+    graph_map[4] = {{2, 0}, {3, 0}, {5, 0}, {6, 0}, {8, 0}};
+    graph_map[5] = {{1, 0}, {2, 0}, {4, 0}, {8, 0}};
+    graph_map[6] = {{4, 0}, {7, 0}, {8, 0}};
+    graph_map[7] = {{3, 0}, {6, 0}};
+    graph_map[8] = {{4, 0}, {5, 0}, {6, 0}};
 
-    for(const auto& n : v)
-        printf("%d ", n);
+    for(int i = 1; i <= graph_map.size(); ++i)
+        for(const auto& [dst, weight] : graph_map[i])
+            graph.AddEdge({i, dst, weight});
 
-    printf("\n");
+    auto edges = graph.GetEdges();
+    auto colors = Coloring(edges, graph_map);
+
+    for(std::size_t i = 0; i < colors.size(); ++i)
+        printf("%zu: %d\n", i + 1, colors[i]);
+
     return 0;
 }

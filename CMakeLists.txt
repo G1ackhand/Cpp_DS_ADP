@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
-project(partial LANGUAGES CXX)
+project(coloring LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(partial
+add_executable(coloring
     main.cpp
 )
 
-target_include_directories(partial
+target_include_directories(coloring
     PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/ch4
+    ${CMAKE_CURRENT_SOURCE_DIR}/ch5
 )
