@@ -1,0 +1,13 @@
+prefix=/Users/g1/Desktop/G1/study/cpp/ds-al-cpp/libs/openssl-3.4.0
+exec_prefix=${prefix}
+libdir=${exec_prefix}
+includedir=${prefix}/include ${prefix}/./include 
+enginesdir=${libdir}/engines
+modulesdir=${libdir}/providers
+
+Name: OpenSSL-libcrypto
+Description: OpenSSL cryptography library
+Version: 3.4.0
+Libs: -L${libdir} -lcrypto
+Libs.private: 
+Cflags: -I${prefix}/include  -I${prefix}/./include 
