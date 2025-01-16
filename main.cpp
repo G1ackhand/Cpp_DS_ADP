@@ -20,29 +20,15 @@
 #include "ch5/WelshPowell.h"
 #include "ch5/Graph.h"
 
+float GetCirc()
+
 int main()
 {
-    Graph<int> graph(8);
-    GraphMap graph_map;
+    float a = 100 - 70.33;
+    float b = 100 - 79.33;
+    float c = 8;
 
-    graph_map[1] = {{2, 0}, {5, 0}};
-    graph_map[2] = {{1, 0}, {5, 0}, {4, 0}};
-    graph_map[3] = {{4, 0}, {7, 0}};
-    graph_map[4] = {{2, 0}, {3, 0}, {5, 0}, {6, 0}, {8, 0}};
-    graph_map[5] = {{1, 0}, {2, 0}, {4, 0}, {8, 0}};
-    graph_map[6] = {{4, 0}, {7, 0}, {8, 0}};
-    graph_map[7] = {{3, 0}, {6, 0}};
-    graph_map[8] = {{4, 0}, {5, 0}, {6, 0}};
-
-    for(int i = 1; i <= graph_map.size(); ++i)
-        for(const auto& [dst, weight] : graph_map[i])
-            graph.AddEdge({i, dst, weight});
-
-    auto edges = graph.GetEdges();
-    auto colors = Coloring(edges, graph_map);
-
-    for(std::size_t i = 0; i < colors.size(); ++i)
-        printf("%zu: %d\n", i + 1, colors[i]);
-
+    float d = 1 - 0.072 * (a - b);
+    printf("%f\n", c * b * b / a / a * d);
     return 0;
 }
